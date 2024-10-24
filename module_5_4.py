@@ -1,5 +1,4 @@
 class House:
-
     houses_history = []
 
     def __init__(self, name, number_of_floors):
@@ -13,17 +12,13 @@ class House:
             for x in range(0, new_floor):
                 print(x + 1)
 
+    def __new__(cls, *args, **kwargs):
+        if cls.houses_history is None:
+            cls.houses_history = super().__new__(cls)
+        return cls.houses_history.append(args)
+
     def __del__(self):
         print(f'{self.name}снесён, но он останется в истории')
-
-    def __new__(cls, *args):
-        print(args)
-        return object.__new__(cls)
-
-
-    def __init__(self, *args):
-        print(f'{House.houses_history.append(args)}')
-
 
 
 h1 = House('ЖК Эльбрус', 10)
@@ -38,4 +33,3 @@ del h2
 del h3
 
 print(House.houses_history)
-
