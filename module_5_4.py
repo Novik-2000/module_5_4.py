@@ -12,13 +12,12 @@ class House:
             for x in range(0, new_floor):
                 print(x + 1)
 
-    def __new__(cls, *args, **kwargs):
-        if cls.houses_history is None:
-            cls.houses_history = super().__new__(cls)
-        return cls.houses_history.append(args)
+    def __new__(cls, *args):
+        cls.houses_history.append(args[0]) # добавляем первый атрибут в список houses_history
+        return object.__new__(cls)
 
     def __del__(self):
-        print(f'{self.name}снесён, но он останется в истории')
+        print(f'{self.name} снесён, но он останется в истории')
 
 
 h1 = House('ЖК Эльбрус', 10)
