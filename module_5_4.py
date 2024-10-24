@@ -13,7 +13,7 @@ class House:
                 print(x + 1)
 
     def __new__(cls, *args):
-        cls.houses_history.append(args[0]) # добавляем первый атрибут в список houses_history
+        cls.houses_history.append(args[0]) 
         return object.__new__(cls)
 
     def __del__(self):
